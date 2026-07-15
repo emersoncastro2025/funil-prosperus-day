@@ -14,17 +14,13 @@ export interface LeadPayload {
   data_hora: string
 }
 
+const WEBHOOK_URL =
+  (import.meta.env.VITE_WEBHOOK_URL as string | undefined) ||
+  'https://api.datacrazy.io/v1/crm/api/crm/integrations/webhook/business/eb7415c3-df5e-47af-9393-a10e54d99707'
+
 export async function enviarLead(payload: LeadPayload): Promise<void> {
-  const webhookUrl = import.meta.env.VITE_WEBHOOK_URL as string | undefined
-
-  if (!webhookUrl) {
-    // Fallback: apenas loga no console quando não há webhook configurado
-    console.log('[Funil Prosperus Day] Lead capturado:', payload)
-    return
-  }
-
   try {
-    await fetch(webhookUrl, {
+    await fetch(WEBHOOK_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
