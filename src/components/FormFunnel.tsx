@@ -50,7 +50,7 @@ export function FormFunnel({ nomeIndicador, onSubmit }: Props) {
   const [errors, setErrors] = useState<Errors>({})
   const [loading, setLoading] = useState(false)
   const { applyMask, validate: validatePhone } = usePhoneMask()
-  const formRef = useRef<HTMLDivElement>(null)
+  const formRef = useRef<HTMLFormElement>(null)
 
   function set(field: keyof FormValues, value: string) {
     setValues(prev => ({ ...prev, [field]: value }))
@@ -69,7 +69,7 @@ export function FormFunnel({ nomeIndicador, onSubmit }: Props) {
 
     if (Object.keys(errs).length > 0) {
       // Scroll para o primeiro erro
-      const firstErrorEl = formRef.current?.querySelector('[data-error="true"]')
+      const firstErrorEl = formRef.current?.querySelector<HTMLElement>('[data-error="true"]')
       firstErrorEl?.scrollIntoView({ behavior: 'smooth', block: 'center' })
       return false
     }
@@ -206,7 +206,7 @@ export function FormFunnel({ nomeIndicador, onSubmit }: Props) {
           <div style={{ height: 1, background: '#EADFCB', marginBottom: 28 }} />
 
           {/* Formulário */}
-          <form onSubmit={handleSubmit} noValidate ref={formRef as React.RefObject<HTMLFormElement>}>
+          <form onSubmit={handleSubmit} noValidate ref={formRef}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
 
               {/* Nome */}
