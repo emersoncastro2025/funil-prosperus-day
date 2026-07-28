@@ -1,75 +1,57 @@
-import { useState, useEffect } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
-import { FormFunnel, type FormValues } from './components/FormFunnel'
-import { ConfirmationScreen } from './screens/ConfirmationScreen'
-import { enviarLead } from './utils/webhook'
-
-type Tela = 'form' | 'confirmacao'
-
-function lerIndicador(): { ref: string | null; nomeExibicao: string | null } {
-  const params = new URLSearchParams(window.location.search)
-  const ref = params.get('ref')
-  if (!ref) return { ref: null, nomeExibicao: null }
-  const nome = ref.charAt(0).toUpperCase() + ref.slice(1).replace(/\d+$/, '')
-  return { ref, nomeExibicao: nome || ref }
-}
+import { ChatFunnel } from './components/ChatFunnel'
 
 export default function App() {
-  const [tela, setTela] = useState<Tela>('form')
-  const [formFinal, setFormFinal] = useState<FormValues | null>(null)
-  const { ref: indicadorRef, nomeExibicao: nomeIndicador } = lerIndicador()
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }, [tela])
-
-  async function handleSubmit(values: FormValues) {
-    setFormFinal(values)
-    setTela('confirmacao')
-
-    await enviarLead({
-      nome: values.nome,
-      faturamento_mensal: values.faturamento_mensal,
-      patrimonio_investido: values.patrimonio_investido,
-      whatsapp: values.whatsapp,
-      instagram: values.instagram,
-      indicado_por: indicadorRef || 'direto',
-      origem: indicadorRef ? 'referido' : 'direto',
-      data_hora: new Date().toISOString(),
-    })
-  }
-
   return (
-    <AnimatePresence mode="wait">
-      {tela === 'form' && (
-        <motion.div
-          key="form"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
+    <div
+      style={{
+        minHeight: '100dvh',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        padding: '0 8px 40px',
+      }}
+    >
+      <header style={{ textAlign: 'center', padding: '20px 16px 12px', width: '100%' }}>
+        <p
+          style={{
+            fontFamily: 'Montserrat, sans-serif',
+            fontWeight: 700,
+            fontSize: 'clamp(10px, 2.5vw, 12px)',
+            letterSpacing: '3px',
+            textTransform: 'uppercase',
+            color: '#F5EFE6',
+            margin: 0,
+            opacity: 0.9,
+          }}
         >
-          <FormFunnel
-            nomeIndicador={nomeIndicador}
-            onSubmit={handleSubmit}
-          />
-        </motion.div>
-      )}
+          Raquel Mendes · Prosperidade Financeira
+        </p>
+      </header>
 
-      {tela === 'confirmacao' && formFinal && (
-        <motion.div
-          key="confirmacao"
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.35 }}
+      <main
+        style={{
+          width: '100%',
+          maxWidth: '520px',
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
+        <div
+          style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            borderRadius: '20px',
+            background: 'rgba(255,245,230,0.14)',
+            border: '1px solid rgba(184,137,75,0.35)',
+            boxShadow: '0 8px 40px rgba(0,0,0,0.2)',
+            overflow: 'hidden',
+          }}
         >
-          <ConfirmationScreen
-            nome={formFinal.nome}
-            whatsapp={formFinal.whatsapp}
-          />
-        </motion.div>
-      )}
-    </AnimatePresence>
+          <ChatFunnel />
+        </div>
+      </main>
+    </div>
   )
 }

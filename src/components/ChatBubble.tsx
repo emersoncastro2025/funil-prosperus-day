@@ -22,11 +22,12 @@ export function BotBubble({ children, isTyping = false }: BotBubbleProps) {
       <div
         className="max-w-[80%] rounded-2xl rounded-bl-sm px-4 py-3 text-sm leading-relaxed"
         style={{
-          background: '#FFFFFF',
-          border: '1px solid #EADFCB',
-          color: '#4A3B28',
+          background: 'rgba(255,245,225,0.2)',
+          backdropFilter: 'blur(12px)',
+          border: '1px solid rgba(255,220,170,0.22)',
+          color: '#F5EFE6',
           fontFamily: 'Inter, sans-serif',
-          boxShadow: '0 2px 10px rgba(176,138,78,0.10)',
+          boxShadow: '0 4px 16px rgba(0,0,0,0.15)',
         }}
       >
         {isTyping ? <TypingIndicator /> : children}
@@ -46,10 +47,10 @@ export function UserBubble({ children }: UserBubbleProps) {
       <div
         className="max-w-[75%] rounded-2xl rounded-br-sm px-4 py-3 text-sm font-medium"
         style={{
-          background: 'linear-gradient(135deg, #EBD494, #DFC074)',
-          color: '#3D2E1A',
+          background: 'linear-gradient(135deg, #B8894B, #C9A96A)',
+          color: '#2B1D12',
           fontFamily: 'Inter, sans-serif',
-          boxShadow: '0 2px 10px rgba(176,138,78,0.20)',
+          boxShadow: '0 4px 16px rgba(184,137,75,0.3)',
         }}
       >
         {children}
@@ -61,9 +62,9 @@ export function UserBubble({ children }: UserBubbleProps) {
 function TypingIndicator() {
   return (
     <div className="flex items-center gap-1.5 py-0.5">
-      <span className="typing-dot w-2 h-2 rounded-full inline-block" style={{ background: '#C9A54E' }} />
-      <span className="typing-dot w-2 h-2 rounded-full inline-block" style={{ background: '#C9A54E' }} />
-      <span className="typing-dot w-2 h-2 rounded-full inline-block" style={{ background: '#C9A54E' }} />
+      <span className="typing-dot w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#C9A96A' }} />
+      <span className="typing-dot w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#C9A96A' }} />
+      <span className="typing-dot w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#C9A96A' }} />
     </div>
   )
 }

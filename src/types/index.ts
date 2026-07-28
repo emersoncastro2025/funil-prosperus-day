@@ -1,19 +1,23 @@
 export interface FormData {
   nome: string
-  faturamento_mensal: string
-  patrimonio_investido: string
+  renda: string
+  patrimonio: string
   whatsapp: string
+  email: string
   instagram: string
 }
 
-export type Tela = 'landing' | 'chat' | 'confirmacao'
+export type StepId = 'nome' | 'renda' | 'patrimonio' | 'whatsapp' | 'email' | 'instagram'
 
-export type StepId = 'nome' | 'faturamento' | 'patrimonio' | 'whatsapp' | 'instagram'
+export interface ChatMessage {
+  role: 'bot' | 'user'
+  text: string
+}
 
 export interface StepConfig {
   id: StepId
   question: (nome?: string) => string
-  inputType: 'text' | 'chips' | 'phone' | 'instagram'
+  inputType: 'text' | 'chips' | 'phone' | 'email' | 'instagram'
   chips?: string[]
   placeholder?: string
   field: keyof FormData
