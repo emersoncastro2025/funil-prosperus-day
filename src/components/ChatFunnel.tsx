@@ -12,14 +12,14 @@ const STEPS: StepConfig[] = [
   {
     id: 'nome',
     question: () =>
-      'Olá! Vou te fazer algumas perguntas rápidas para a Raquel entender seu momento financeiro. Para começar, como você se chama?',
+      'Oi! Eu sou a Raquel Mendes. Antes de agendarmos nossa conversa, quero te conhecer melhor. Para começar, qual é o seu nome?',
     inputType: 'text',
     placeholder: 'Seu nome completo',
     field: 'nome',
   },
   {
     id: 'renda',
-    question: (nome) => `Perfeito, ${nome}! Quanto você ganha por mês atualmente?`,
+    question: (nome) => `Que prazer, ${nome}! Me conta: qual é a sua renda mensal hoje?`,
     inputType: 'chips',
     chips: [
       'Até R$5 mil',
@@ -32,7 +32,7 @@ const STEPS: StepConfig[] = [
   },
   {
     id: 'patrimonio',
-    question: (nome) => `Ótimo, ${nome}! Você já possui algum patrimônio investido hoje?`,
+    question: (nome) => `Ótimo, ${nome}! E você já tem algum patrimônio investido atualmente?`,
     inputType: 'chips',
     chips: [
       'Ainda não invisto',
@@ -46,19 +46,19 @@ const STEPS: StepConfig[] = [
   },
   {
     id: 'whatsapp',
-    question: (nome) => `Quase lá, ${nome}! Qual o melhor WhatsApp para falarmos?`,
+    question: (nome) => `Perfeito, ${nome}! Qual é o seu WhatsApp? Assim consigo entrar em contato direto com você.`,
     inputType: 'phone',
     field: 'whatsapp',
   },
   {
     id: 'email',
-    question: () => 'Qual o seu melhor e-mail?',
+    question: () => 'E o seu melhor e-mail? Vou usá-lo para confirmar o nosso encontro.',
     inputType: 'email',
     field: 'email',
   },
   {
     id: 'instagram',
-    question: () => 'Por fim, qual o seu @ do Instagram?',
+    question: () => 'Por último: qual é o seu @ no Instagram? Adoro conhecer quem vai conversar comigo!',
     inputType: 'instagram',
     placeholder: '@seuinstagram',
     field: 'instagram',
