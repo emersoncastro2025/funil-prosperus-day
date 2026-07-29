@@ -12,7 +12,7 @@ const STEPS: StepConfig[] = [
   {
     id: 'nome',
     question: () =>
-      'Oi! Eu sou a Raquel Mendes. Antes de agendarmos nossa conversa, quero te conhecer melhor. Para começar, qual é o seu nome?',
+      'Oi! Antes de agendarmos um direcionamento para a sua vida financeira, quero te conhecer melhor. Para começar, qual é o seu nome?',
     inputType: 'text',
     placeholder: 'Seu nome completo',
     field: 'nome',
