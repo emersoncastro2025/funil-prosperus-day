@@ -11,6 +11,8 @@ export function Avatar() {
       <img
         src="/raquel.jpg"
         alt="Raquel Mendes"
+        fetchPriority="high"
+        decoding="async"
         style={{
           width: '100%',
           height: '100%',
