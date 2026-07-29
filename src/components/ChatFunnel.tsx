@@ -119,6 +119,20 @@ export function ChatFunnel() {
     if (currentStepIndex < TOTAL_STEPS - 1) {
       setCurrentStepIndex((i) => i + 1)
     } else {
+      const finalData = { ...formData, [step.field]: answer }
+      fetch('https://api.datacrazy.io/v1/crm/api/crm/integrations/webhook/business/21360722-42be-4e6d-903a-362e0a67c570', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          nome: finalData.nome,
+          renda: finalData.renda,
+          patrimonio: finalData.patrimonio,
+          whatsapp: finalData.whatsapp,
+          email: finalData.email,
+          instagram: finalData.instagram,
+          origem: 'funil-agendamento-raquel',
+        }),
+      }).catch(() => {})
       setDone(true)
     }
   }
